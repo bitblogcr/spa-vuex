@@ -1,0 +1,6 @@
+//dependencias requeridas de la versión de VUE
+{
+  "dependencies": {
+    "vue": "3.2.33"
+  }
+}
