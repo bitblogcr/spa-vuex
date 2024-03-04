@@ -1,16 +1,22 @@
  <!-- Sael Pasos, Tarea 2 UNED I cuatrimestre -->
- <!--Plantilla -->
 <template>
   <div id="app" class="container">
   <br>
     <h2>Lista de To Do's pendientes</h2>
     <!-- Formulario -->
     <form class="form" @submit.prevent="handleSubmit">
-      <input v-model="description" type="text" placeholder="Descripción" class="input-field" />
+      <input v-model="description" type="text" placeholder="¿Qué tarea debo anotar?" class="input-field" />
       <input v-model="date" type="date" class="input-field" />
       <button type="submit" class="btn-submit">Agregar una tarea</button>
-
-        <!-- Leyenda de licencia -->
+      <div id="app">
+    <!-- Aquí va el contenido principal de tu aplicación -->
+    
+    <!-- Botones para ir al inicio y al final de la página -->
+    <div class="scroll-buttons">
+      
+      <button @click="scrollToBottom">Ir al final</button>
+    </div>
+  </div>
       <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://1785154.playcode.io/">Tarea 2 Uso de estados para SPA con Vuex</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.linkedin.com/in/sspc/">SPPC</a> is marked with <a href="http://creativecommons.org/publicdomain/zero/1.0?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC0 1.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/zero.svg?ref=chooser-v1"></a></p>
     </form>
     <!-- Lista de TO - DOs, tareas -->
@@ -21,6 +27,7 @@
       </li>
     </ul>
   </div>
+  
 </template>
 
  <!-- Funciones script acopladas -->
@@ -51,7 +58,22 @@ export default {
       this.$store.dispatch('deleteTodo', id);
     },
   },
+    methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Para hacer el desplazamiento suave
+      });
+    },
+    scrollToBottom() {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight, // Altura total del documento
+        behavior: 'smooth' // Para hacer el desplazamiento suave
+      });
+    }
+  }
 };
+
 </script>
  <!-- Stilos acoplados a Vue, con CSS embebido -->
 <style scoped>
@@ -66,36 +88,53 @@ export default {
 }
 
 .input-field {/* inputs, cajas de form */
-  margin-right: 20px; /* Espacios */
-  padding: 5px; /* Espaciado  */
-  border-radius: 12px; /* Bordes  redondos */
-  border: 5px solid #ccc; /* Borde */
+  margin-right: 20px; 
+  padding: 5px; 
+  border-radius: 12px; 
+  border: 5px solid #ccc; 
+}
+.scroll-buttons {
+  cursor: pointer; 
+  position: fixed;
+  bottom: 250px;
 }
 
+.scroll-buttons button {
+    position: fixed;
+  top: 25px;
+  right: 20px;
+  padding: 5px 10px; 
+  border: 1px solid #ccc;
+  background-color: #4caf50; 
+  color: #fff; 
+  border-radius: 15px; 
+  cursor: pointer; 
+}
 .btn-submit {
-  padding: 5px 10px; /* Espaciado  */
-  border: 1px solid #ccc;/* Sin borde */
-  background-color: #4caf50; /* Color de fondo verde */
-  color: #fff; /* Color de texto blanco */
-  border-radius: 15px; /* Bordes redondos */
-  cursor: pointer; /* Cursor de apuntar */
+  padding: 5px 10px; 
+  border: 1px solid #ccc;
+  background-color: #4caf50;
+  color: #fff; 
+  border-radius: 15px; 
+  cursor: pointer; 
 }
 
 .btn-delete {
-  padding: 3px 5px; /* Espaciado interno */
-  border: none; /* Sin borde */
-  background-color: #f44336; /* Color de fondo rojo */
-  color: #fff; /* Color de texto blanco */
-  border-radius: 3px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor de apuntar */
+  padding: 3px 5px;
+  border: none; 
+  background-color: orange; 
+  color: #fff; 
+  border-radius: 3px; 
+  cursor: pointer; 
 }
 
 .todo-list {
-  list-style: disc; /*  viñetas */
-  padding: 5; /*  relleno */
+  list-style: disc; 
+  padding: 5;
 }
 
 .todo-item {
-  margin-top: 10px; /* Espaciado  */
+  margin-top: 10px; 
 }
+
 </style>
